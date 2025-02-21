@@ -9,13 +9,13 @@ const requestOptions = {
 };
 
 
-export const options = {
-    stages: [
-        { duration: '1m', target: 50 },  // 1분 동안 50명으로 증가
-        { duration: '3m', target: 500 }, // 3분 동안 500명까지 증가
-        { duration: '1m', target: 0 },   // 1분 동안 점진적으로 종료
-    ]
-};
+// export const options = {
+//     stages: [
+//         { duration: '1m', target: 50 },  // 1분 동안 50명으로 증가
+//         { duration: '3m', target: 500 }, // 3분 동안 500명까지 증가
+//         { duration: '1m', target: 0 },   // 1분 동안 점진적으로 종료
+//     ]
+// };
 
 // ✅ 응답 시간 측정을 위한 Trend 메트릭 생성
 let homePageResponseTime = new Trend('home_page_response_time');
@@ -26,7 +26,7 @@ let successPageResponseTime = new Trend('success_page_response_time');
 let myPageResponseTime = new Trend('mypage_response_time');
 
 // 변수
-const BASE_URL = 'http://auttoever.com'; 
+const BASE_URL = 'http://112.218.95.58:13005'; 
 const JWT_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ODQzODRiNDgyYWU0MmFhOTg3OTIzNWRjYmQzYmJmYyIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjM0NzMwMjY3MjN9.GN1QydkJnoMmIOQzPA7Gw0ltXI7cXPZPhISBgehM4mw";
 
 export default function () {
