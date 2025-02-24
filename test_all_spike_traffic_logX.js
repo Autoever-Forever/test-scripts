@@ -8,7 +8,6 @@ const FRONT_BASE_URL = "http://localhost:3000"
 const BACK_USER_URL = "http://localhost:8081/auth"
 const BACK_QUERY_URL = "http://localhost:8082/products"
 const BACK_RESERV_URL = "http://localhost:8083/api/v1/reservation"
-const BACK_ADMIN_URL = "http://localhost:8084/admin"
 const JWT_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZjJhMWNhMDVlMzU0YWExOTE1NGJjMWU0NTBkNGY5ZCIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjM0ODExOTYyNDB9.N64GM0D9535hMTXkKzk_VIzlqkBcy6AKV04iNo6-Lek";
 
 const signupCounter = new Counter('signup_counter');
@@ -49,6 +48,8 @@ function signup() {
     if (res.status !== 200) {
         console.error(`메인페이지 접속 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 3);
+
     // back
     res = http.get(`${BACK_QUERY_URL}/info/?pageNum=0`, {
         headers: { 'Content-Type': 'application/json' }
@@ -66,7 +67,7 @@ function signup() {
     if (res.status !== 200) {
         console.error(`로그인 페이지 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
-
+    sleep(Math.random() * 4);
 
     // 회원가입 페이지 접속
     // front
@@ -75,6 +76,7 @@ function signup() {
     if (res.status !== 200) {
         console.error(`외원가입 페이지 로딩 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 2);
 
     // back - 인증번호 전송
     const email = createRandomEmail();
@@ -87,6 +89,7 @@ function signup() {
     }
     jsonRes = JSON.parse(res.body);
     const verification_code = jsonRes.data;
+    sleep(Math.random() * 2);
 
     // back - 인증번호 확인
     res = http.post(`${BACK_USER_URL}/verify-code?email=${email}&verificationCode=${verification_code}`, {
@@ -96,6 +99,7 @@ function signup() {
     if (res.status !== 200) {
         console.error(`인증번호 확인 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 2);
 
     // back - 회원가입
     data = {
@@ -112,6 +116,7 @@ function signup() {
     if (res.status !== 200) {
         console.error(`회원가입 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 1);
 
     // back - 내부적으로 로그인
     data = {
@@ -134,6 +139,7 @@ function signup() {
     if (res.status !== 200) {
         console.error(`회원가입 완료 페이지 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 2);
 
     // 메인으로 돌아가기
     // front
@@ -174,6 +180,7 @@ function visitHome() {
         console.error(`상품 전체 조회 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
 
+    sleep(Math.random() * 2);
 
     // 로그인 페이지 접속
     // front
@@ -182,6 +189,7 @@ function visitHome() {
     if (res.status !== 200) {
         console.error(`로그인 페이지 로딩 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 10);
     // back
     data = {
         email: 'ocar1115.shin@gmail.com',
@@ -236,6 +244,8 @@ function makeReservation(){
         console.error(`상품 상세 데이터 조회 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
 
+    sleep(Math.random() * 4);
+
     // 상품 예약 페이지 접속
     // front
     res = http.get(`${FRONT_BASE_URL}/inventory/0`);
@@ -253,6 +263,7 @@ function makeReservation(){
     if (res.status !== 200) {
         console.error(`inventory 데이터 조회 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 2);
 
 
     // 예매 및 예매 성공 페이지 접속
@@ -269,6 +280,7 @@ function makeReservation(){
     if (res.status !== 200) {
         console.error(`예매 로직 🚨오류 발생 \n 상태코드 : ${res.status} \n 응답 : ${res.body}`);
     }
+    sleep(Math.random() * 2);
 
     // front
     res = http.get(`${FRONT_BASE_URL}/success`);
@@ -276,6 +288,7 @@ function makeReservation(){
     if (res.status !== 200) {
         console.error(`예약 성공 페이지 로딩 🚨오류 발생 \n 상태코드 : ${res.status}`);
     }
+    sleep(Math.random() * 2);
 }
 
 export let options = {
