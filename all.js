@@ -1,5 +1,5 @@
-const BASE_URL = 'http://auttoever.com';
-const PASSWORD = 'password123';
+const BASE_URL = 'http://localhost:3000';
+const PASSWORD = '1234';
 
 const requestOptions = {
     headers: {
@@ -33,7 +33,7 @@ export default function () {
     sleep(Math.random() * 2);
 
     // 2-1. 회원가입 페이지 접속
-    console.log(`VU ${vuId}: 회원가입 페이지 접속속...`);
+    console.log(`VU ${vuId}: 회원가입 페이지 접속...`);
 
     // 2-2. 회원가입 요청 (POST 요청)
     console.log(`VU ${vuId}: 회원가입 요청...`);
@@ -124,7 +124,7 @@ export default function () {
      });
  
      if (responseBody.success && responseBody.data && responseBody.data.reservationId) {
-         reservationId = responseBody.data.reservationId; // 예약 ID 저장
+         let reservationId = responseBody.data.reservationId; // 예약 ID 저장
          console.log(`예약 성공! 예약 ID: ${reservationId}`);
      } else {
          console.log('예약 ID 없음. 테스트 종료.');

@@ -5,12 +5,12 @@ import { SharedArray } from 'k6/data';
 
 let loginDuration = new Trend('login_duration');
 
-const BASE_URL = 'http://auttoever.com:13005/';
+const BASE_URL = 'http://localhost:3000';
 
 // 가상의 350명 유저 생성
 const users = new SharedArray('users', function () {
   let generatedUsers = [];
-  for (let i = 0; i < 350; i++) {
+  for (let i = 0; i < 10; i++) {
     generatedUsers.push({
       email: `user${i}@test.com`,
       password: `password${i}`
@@ -20,8 +20,8 @@ const users = new SharedArray('users', function () {
 });
 
 export let options = {
-  iterations: 350,
-  vus: 350,
+  iterations: 10,
+  vus: 10,
 };
 
 export default function () {
